@@ -1,0 +1,30 @@
+from numpy import array
+from keras.models import Sequential
+from keras.layers.core import Activation, Dropout, Dense
+from keras.layers import LSTM
+
+def createData(n):
+    X = [x + 1 for x in range(n)]
+    Y = [y * 15 for y in X]
+
+    #print(X, Y)
+    return (X, Y)
+
+if __name__ == "__main__":
+    
+    X, Y = createData(20)
+    X = array(X).reshape(20, 1, 1)   # samples, time-steps, features
+    Y = array(Y)
+
+    model = Sequential()
+    model.add(LSTM(50, activation='relu', input_shape=(1, 1)))
+    model.add(Dense(1))
+    model.compile(optimizer='adam', loss='mse')
+    print(model.summary())
+    
+    #model.fit(X, Y, epochs=1000, validation_split=0.2, batch_size=5)
+
+    #test = array([30]).reshape((1, 1, 1))
+    #output = model.predict(test, verbose=0)
+
+    #print(output)
