@@ -1,6 +1,7 @@
 import matplotlib.pyplot as plt
 import numpy as np
 import random
+import math
 import gzip
 
 image_rows = 28
@@ -44,36 +45,49 @@ def cons_frame(imgs, corners, vel):
         for r in range(imgs[i].shape[0]):
             for c in range(imgs[i].shape[1]):
                 x, y = (r + vel[i][0] + corners[i][0], c + vel[i][1] + corners[i][1])
+
                 if valid(x, y) == False:
-                    continue
+                    rev_x = 1
+                    rev_y = 1
+                    if valid(x, 0) == False:
+                        rev_x = -1
+                    if valid(0, y) == False:
+                        rev_y = -1
+                        
+                    vel[i] = (rev_x * vel[i][0], rev_y * vel[i][1])
+                    x, y = (r + vel[i][0] + corners[i][0], c + vel[i][1] + corners[i][1])
+                    
                 frame[x][y] = max(frame[x][y], imgs[i][r][c])
 
     corners = ((corners[0][0] + vel[0][0], corners[0][1] + vel[0][1]),
-               (corners[1][0] + vel[1][0], corners[1][1] + vel[1][1]),
-               (corners[2][0] + vel[2][0], corners[2][1] + vel[2][1])
+               (corners[1][0] + vel[1][0], corners[1][1] + vel[1][1])
     )
-    return (frame, corners)
+    return (frame, corners, vel)
 
 def gen_test(data, num_images):
     choices = ()
     corners = ()
-    velocity = ()
+    velocity = []
     count = 0
-    while count < 3:
+
+    # two images per frame
+    while count < 2:
         choices += (random.randint(0, num_images - 1), )
         count += 1
 
     count = 0
-    while count < 3:
-        r = random.randint(0, frame_size[0] - 1)
-        c = random.randint(0, frame_size[1] - 1)
+    while count < 2:
+        r = random.randint(0, frame_size[0] - 28 - 1)
+        c = random.randint(0, frame_size[1] - 28 - 1)
         corners += ((r, c), )
         count += 1
 
     count = 0
-    while count < 3:
-        vr = random.randint(-2, 2)
-        vc = random.randint(-2, 2)
+    while count < 2:
+        amp = random.randint(3, 5)
+        theta = random.uniform(0, 2 * math.pi)
+        vr = int(amp * math.cos(theta))
+        vc = int(amp * math.sin(theta))
         velocity += ((vr, vc), )
         count += 1
 
@@ -84,7 +98,7 @@ def gen_test(data, num_images):
 
     frames = []
     for i in range(frame_no):
-        frame, corners = cons_frame(imgs, corners, velocity)
+        frame, corners, velocity = cons_frame(imgs, corners, velocity)
         frames.append(frame)
         #plt.imshow(frame, cmap='gray')
         #plt.show()
