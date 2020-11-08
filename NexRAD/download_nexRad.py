@@ -21,7 +21,6 @@ def download_data(url, params):
         filename = name.lstrip()[:23]
         radar = requests.get(link)
         open(path + filename, 'wb').write(radar.content)
-        break
     
 
 def main():
