@@ -59,6 +59,8 @@ def read_nexRad(filename):
                          dtype=np.uint8).reshape(int(height), int(width), 3)
     data = cv2.cvtColor(data[200:600, 600:1000], cv2.COLOR_BGR2GRAY)
     data = cv2.resize(data, (200, 200), interpolation = cv2.INTER_NEAREST)
+
+    plt.close()
     # data = cv2.blur(data, (3, 3))
     # print(data.shape)
     # plt.show()
@@ -72,7 +74,8 @@ def read_nexRad(filename):
 def main():
     dirname = "31102020"
     # sort to get files in the correct sequence
-    filenames = listdir(dirname).sort()
+    filenames = listdir(dirname)
+    filenames.sort()
 
     data = []
     itern = 0
