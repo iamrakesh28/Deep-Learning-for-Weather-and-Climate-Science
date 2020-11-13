@@ -1,6 +1,6 @@
 # Next-frame prediction with Conv-LSTM
 ## Stacked Conv-LSTM
-This is a sample tutorial code from https://keras.io/examples/vision/conv_lstm/ for the demonstration of next frame prediction with Conv-LSTM. The model has 3 stacked Conv-LSTM layers with 40 hidden units (filters of size (3 x 3)) in each layer. The final layer is a 1 filter 3D Convolutional layer to produce the final image. The model is many-to-one. Artificial dataset is generated where each frame has 3 - 7 squares moving linearly over time inside the 40 x 40 image frame.
+This is a sample tutorial code from https://keras.io/examples/vision/conv_lstm/ for the demonstration of next frame prediction with Conv-LSTM. The model has 3 stacked Conv-LSTM layers with 40 hidden units (filters of size (3 x 3)) in each layer. The final layer is a 1 filter 3D Convolutional layer with filter size (3 x 3 x 3) to produce the final image. Between each two layers there is a batch normalization layer to make network stable and faster. The model is many-to-one which means given any number sequences, the model will predict the next frame of the given sequence. Artificial dataset is generated where each frame has 3 - 7 squares moving linearly over time inside the 40 x 40 image frame. Binary cross-entropy loss and Adadelta optimizer were used for the training. 
 
 To run this model:
 
@@ -25,8 +25,8 @@ Wall time: 2min 36s
 ```
 
 ### Result
-On a test sample, next 8 frames were predicted using first 7 frames. Since the above model is many-to-one, so for the many-to-many predictions predicted output frame 
-is also fed into the network along with the original input sequence.
+On a test sample, next 8 frames were predicted using first 7 frames. Since the above model is many-to-one, so for the many-to-many predictions, predicted output frames 
+are fed into the network along with the original input sequence.
  ![Predicted](https://github.com/iamrakesh28/Deep-Learning-for-Weather-and-Climate-Science/blob/master/lstm-keras/next-frame-tutorial/images/output.gif) 
  
 ## References
