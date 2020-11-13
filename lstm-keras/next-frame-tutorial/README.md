@@ -29,5 +29,52 @@ On a test sample, next 8 frames were predicted using first 7 frames. Since the a
 are fed into the network along with the original input sequence.
  ![Predicted](https://github.com/iamrakesh28/Deep-Learning-for-Weather-and-Climate-Science/blob/master/lstm-keras/next-frame-tutorial/images/output.gif) 
  
+## Encoder-Decoder Model
+
+One layer encoder-decoder model was used for training. The layer (both encoder and decoder) has 128 hidden units (no. of filters) with filter size of (3 x 3). The final layer in decoder is 1 x 1 2D conolutional layer with sigmoid activation to produce the frame with intensities between 0 and 1. Since it's a encoder-decoder model, the hidden states from encoder layer is used to initialize the hidden states in the decoder layer. The loss is propagated from the decoder prediction loss (encoder outputs are discarded). The training set is same as in the above model. Binary cross-entropy loss and RMSprop optimizer (learning rate = 0.001 and rho = 0.9) were used for the training. 
+
+To run this model:
+
+` python3 encoder-decoder.py
+`
+### Training
+The model was trained on 1000 samples for 20 epochs with batch size of 8.
+```
+Epoch 1 Loss 0.1155
+Time taken for 1 epoch 40.9735209941864 sec
+
+Epoch 3 Loss 0.0074
+Time taken for 1 epoch 36.06649732589722 sec
+
+Epoch 5 Loss 0.0021
+Time taken for 1 epoch 35.54285788536072 sec
+
+Epoch 7 Loss 0.0010
+Time taken for 1 epoch 36.459315061569214 sec
+
+Epoch 9 Loss 0.0006
+Time taken for 1 epoch 37.46419548988342 sec
+
+Epoch 11 Loss 0.0004
+Time taken for 1 epoch 36.94618797302246 sec
+
+Epoch 13 Loss 0.0003
+Time taken for 1 epoch 35.945321559906006 sec
+
+Epoch 15 Loss 0.0002
+Time taken for 1 epoch 36.00389909744263 sec
+
+Epoch 17 Loss 0.0002
+Time taken for 1 epoch 36.477062463760376 sec
+
+Epoch 19 Loss 0.0001
+Time taken for 1 epoch 37.519431352615356 sec
+
+```
+
+### Result
+
 ## References
 [1] https://keras.io/examples/vision/conv_lstm/
+
+[2] https://www.tensorflow.org/tutorials/text/nmt_with_attention
