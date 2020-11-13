@@ -210,10 +210,14 @@ class EncoderDecoder:
         self.optimizer.apply_gradients(zip(gradients, variables))
 
         # batch_loss (average loss over each target output)
-        return loss / int(targ.shape[1])
-    
-    # inputX - > (total, time_steps, rows, cols, channels)
-    # targetY -> (total, time_steps, rows, cols, channels)
+        return batch_loss / int(target.shape[1])
+
+    # Trains the model for epochs number of iterations
+    #
+    # @param inputX total training samples inputs
+    # @param inputY total training samples outputs
+    # inputX.shape - > (total, time_steps, rows, cols, channels)
+    # targetY.shapw -> (total, time_steps, rows, cols, channels)
     def train(self, inputX, targetY, epochs):
         
         assert(inputX.shape == targetY.shape)
@@ -233,18 +237,14 @@ class EncoderDecoder:
                 
                 batch_loss = self.train_step(input_, target)
                 total_loss += batch_loss
-                
-                #if batch % 10 == 0:
-                #    print('Epoch {} Batch {} Loss {:.4f}'
-                #          .format(epoch + 1, batch + 1, batch_loss.numpy()))
   
-            # saving (checkpoint) the model every 2 epochs
-            if (epoch) % 2 == 0:
-            #    checkpoint.save(file_prefix = checkpoint_prefix)
-                print('Epoch {} Loss {:.4f}'.format(epoch + 1, total_loss / self.batch_sz))
+            if epoch % 2 == 0:
+                print('Epoch {} Loss {:.4f}'.format(epoch + 1, total_loss / total_batch))
                 print('Time taken for 1 epoch {} sec\n'.format(time.time() - start))
-                
-    # input -> (time_steps, rows, cols, channels)
+
+    # predicts for the given input sequences
+    # @param output_seq number of output frame predictions
+    # input_.shape -> (time_steps, rows, cols, channels)
     def predict(self, input_, output_seq):
         input_ = tf.expand_dims(input_, 0)
         dec_states = self.encoder(input_[:9, :, :, :], False)
@@ -252,62 +252,50 @@ class EncoderDecoder:
         
         predictions = []
             
-
-        # Teacher forcing
         for t in range(output_seq):
             prediction, dec_states = self.decoder(dec_input, dec_states, False)
+            # feeding back the predicted frame as the input frame
             dec_input = tf.expand_dims(prediction, 0)
             predictions.append(prediction.numpy().reshape(self.image_sz))
             
         return np.array(predictions)
-        
-    
-def load_dataset():
-    path = "../input/mnist-cs/"
-    data = np.load(path + 'mnist_test_seq.npy')
-    data = data.swapaxes(0, 1)
-    train_data = data[:105]
-    train_data[train_data < 128] = 0
-    train_data[train_data >= 128] = 1
-    train_data = np.expand_dims(train_data, 4)
-    #print(train_data.shape)
-    X = train_data[:, :10, :, :, :]
-    Y = train_data[:, 10:21, :, :, :]
-    X = tf.convert_to_tensor(X, dtype=tf.float32)
-    Y = tf.convert_to_tensor(Y, dtype=tf.float32)
-    return (X, Y)
-    
+            
 
-shifted_movies = generate_movies(n_samples=1200)
-#for i in range(15):
-#    plt.imshow(shifted_movies[0][i].reshape(40, 40))
-#    plt.show()
-
-def plot_result(input_, predict):
+# plots the actual vs predicted frame
+def plot_result(input_, actual, predict):
+    
     for i in range(input_.shape[0]):
         plt.imshow(input_[i])
         plt.title("Actual_" + str(i + 1))
         plt.show()
-    for i in range(predict.shape[0]):
-        plt.imshow(predict[i])
-        plt.title("Predicted_" + str(i + 11))
+        
+    for i in range(actual.shape[0]):
+        plt.subplot(121), plt.imshow(actual[i]),
+        plt.title("Actual_" + str(i + 1 + input_.shape[0]))
+        plt.subplot(122), plt.imshow(predict[i]),
+        plt.title("Predicted_" + str(i + 1 + input_.shape[0]))
         plt.show()
         
 def main():
     
     
-    #X, Y = load_dataset()
+    shifted_movies = generate_movies(n_samples=1200)
     print(shifted_movies.shape)
     
-    #print(X.shape, Y.shape)
     X = shifted_movies[:, :10, :, :, :]
     Y = shifted_movies[:, 10:, :, :, :]
+
+    # defines the model
     model = EncoderDecoder(1, [128], [(3, 3)], 8, (X.shape[2], X.shape[3]))
+    # training on first 1000 samples
+    # samples from 1000 - 1199 are used as test set
     model.train(X[:1000], Y[:1000], 20)
+
+    # predictions 
     y1 = model.predict(X[1100], 10)
     y2 = model.predict(X[1005], 10)
-    plot_result(X[1100].reshape(10, 40, 40), y1)
-    plot_result(X[1005].reshape(10, 40, 40), y2)
+    plot_result(X[1100].reshape(10, 40, 40), Y[1100].reshape(10, 40, 40), y1)
+    plot_result(X[1005].reshape(10, 40, 40), Y[1005].reshape(10, 40, 40), y2)
     
 
     
