@@ -27,7 +27,7 @@ Wall time: 2min 36s
 ### Result
 On a test sample, next 8 frames were predicted using first 7 frames. Since the above model is many-to-one, so for the many-to-many predictions, predicted output frames 
 are fed into the network along with the original input sequence.
- ![Predicted](https://github.com/iamrakesh28/Deep-Learning-for-Weather-and-Climate-Science/blob/master/lstm-keras/next-frame-tutorial/images/output.gif) 
+ ![Predicted](https://github.com/iamrakesh28/Deep-Learning-for-Weather-and-Climate-Science/blob/master/lstm-keras/next-frame-tutorial/images/stacked/output.gif) 
  
 ## Encoder-Decoder Model
 
@@ -73,8 +73,12 @@ Time taken for 1 epoch 37.519431352615356 sec
 ```
 
 ### Result
+The model was used to predict 10 output frames sequence using 10 input seqeunce frames. Following are the two samples from the test set. Left image is the input sequence and right image is the actual next sequence vs predicted next sequence. <br />
+![input0](https://github.com/iamrakesh28/Deep-Learning-for-Weather-and-Climate-Science/blob/master/lstm-keras/next-frame-tutorial/images/enc_dec0/input.gif)
+![Predicted0](https://github.com/iamrakesh28/Deep-Learning-for-Weather-and-Climate-Science/blob/master/lstm-keras/next-frame-tutorial/images/enc_dec0/output.gif) <br />
+![input1](https://github.com/iamrakesh28/Deep-Learning-for-Weather-and-Climate-Science/blob/master/lstm-keras/next-frame-tutorial/images/enc_dec1/input.gif)
+![Predicted1](https://github.com/iamrakesh28/Deep-Learning-for-Weather-and-Climate-Science/blob/master/lstm-keras/next-frame-tutorial/images/enc_dec1/output.gif)
 
 ## References
-[1] https://keras.io/examples/vision/conv_lstm/
-
+[1] https://keras.io/examples/vision/conv_lstm/ <br />
 [2] https://www.tensorflow.org/tutorials/text/nmt_with_attention
