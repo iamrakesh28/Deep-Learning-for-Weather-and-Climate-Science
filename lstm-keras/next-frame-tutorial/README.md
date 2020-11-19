@@ -1,8 +1,10 @@
 # Next-frame prediction with Conv-LSTM
-## Stacked Conv-LSTM
-This is a sample tutorial code from https://keras.io/examples/vision/conv_lstm/ for the demonstration of next frame prediction with Conv-LSTM. The model has 3 stacked Conv-LSTM layers with 40 hidden units (filters of size (3 x 3)) in each layer. The final layer is a 1 filter 3D Convolutional layer with filter size (3 x 3 x 3) with sigmoid activation to produce the final image with intensities between 0 and 1. Between each two layers there is a batch normalization layer to make network stable and faster. The model is many-to-one which means given any number sequences, the model will predict the next frame of the given sequence. Artificial dataset is generated where each frame has 3 - 7 squares moving linearly over time inside the 40 x 40 image frame. Binary cross-entropy loss and Adadelta optimizer were used for the training. 
+A simple Artificial dataset is generated where each frame has 3 - 7 squares moving linearly over time inside the 40 x 40 image frame. Each sample has 20 sequence of such image frames. The dataset generation code can be found at https://keras.io/examples/vision/conv_lstm/.
 
-To run this model:
+## Stacked Conv-LSTM
+The model has 3 stacked Conv-LSTM layers with 40 hidden units (filters of size (3 x 3)) in each layer. The final layer is a 1 filter 3D Convolutional layer with filter size (1 x 1 x 1) having sigmoid activation to produce the final image with intensities between 0 and 1. Between each two layers there is a batch normalization layer to make network stable and faster. The model is many-to-one which means given any number sequences, the model will predict the next frame of the given sequence. The model was trained to minimize the binary crossentropy loss and Adadelta optimizer was used during the training. 
+
+To run this model, set the epoch to 50. If the epoch is set higher then ensure that model doesn't overfit.
 
 ` python3 next-frame.py
 `
@@ -31,9 +33,9 @@ are fed into the network along with the original input sequence.
  
 ## Encoder-Decoder Model
 
-One layer encoder-decoder model was used for training. The layer (both encoder and decoder) has 128 hidden units (no. of filters) with filter size of (3 x 3). The final layer in decoder is 1 x 1 2D conolutional layer with sigmoid activation to produce the frame with intensities between 0 and 1. Since it's a encoder-decoder model, the hidden states from encoder layer is used to initialize the hidden states in the decoder layer. The loss is propagated from the decoder prediction loss (encoder outputs are discarded). The training set is same as in the above model. Binary cross-entropy loss and RMSprop optimizer (learning rate = 0.001 and rho = 0.9) were used for the training. 
+One layer encoder-decoder model was used for training. The layer (both encoder and decoder) has 128 hidden units (no. of filters) with filter size of (3 x 3). The final layer in decoder is 1 x 1 2D conolutional layer with sigmoid activation to produce the frame with intensities between 0 and 1. Since it's a encoder-decoder model, the hidden states from encoder layer is used to initialize the hidden states in the decoder layer. The loss is propagated from the decoder prediction loss (encoder outputs are discarded). The training set is same as in the above model. The model was trained to minimize the binary crossentropy loss and RMSprop optimizer (learning rate = 0.001 and rho = 0.9) was used during the training. 
 
-To run this model:
+To run this model, set the epoch to 20 or little higher. The model converges fastly.
 
 ` python3 encoder-decoder.py
 `
