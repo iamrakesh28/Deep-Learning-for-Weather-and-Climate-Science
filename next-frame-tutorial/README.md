@@ -20,8 +20,8 @@ CPU times: user 18min 27s, sys: 8min 21s, total: 26min 48s
 ### Result
 On a test sample, next 10 frames were predicted using first 10 frames. Since the above model is many-to-one, so for the many-to-many predictions, predicted output frames are also feed into the network along with the original input sequence.
 
- ![input_stack](https://github.com/iamrakesh28/Deep-Learning-for-Weather-and-Climate-Science/blob/master/lstm-keras/next-frame-tutorial/images/stack/input.gif)
- ![Predicted_stack](https://github.com/iamrakesh28/Deep-Learning-for-Weather-and-Climate-Science/blob/master/lstm-keras/next-frame-tutorial/images/stack/output.gif) 
+ ![input_stack](https://github.com/iamrakesh28/Deep-Learning-for-Weather-and-Climate-Science/blob/master/next-frame-tutorial/images/stack/input.gif)
+ ![Predicted_stack](https://github.com/iamrakesh28/Deep-Learning-for-Weather-and-Climate-Science/blob/master/next-frame-tutorial/images/stack/output.gif) 
  <br /> 
  **An example from the test set:** Left image is the input frames and right image is the predicted frames vs the ground truth frames
 ## Encoder-Decoder Model
@@ -42,10 +42,10 @@ Time taken for 1 epoch 37.519431352615356 sec
 
 ### Result
 The model was used to predict 10 output frames sequence using 10 input seqeunce frames.  <br />
-![input0](https://github.com/iamrakesh28/Deep-Learning-for-Weather-and-Climate-Science/blob/master/lstm-keras/next-frame-tutorial/images/enc_dec0/input.gif)
-![Predicted0](https://github.com/iamrakesh28/Deep-Learning-for-Weather-and-Climate-Science/blob/master/lstm-keras/next-frame-tutorial/images/enc_dec0/output.gif) <br />
-![input1](https://github.com/iamrakesh28/Deep-Learning-for-Weather-and-Climate-Science/blob/master/lstm-keras/next-frame-tutorial/images/enc_dec1/input.gif)
-![Predicted1](https://github.com/iamrakesh28/Deep-Learning-for-Weather-and-Climate-Science/blob/master/lstm-keras/next-frame-tutorial/images/enc_dec1/output.gif)
+![input0](https://github.com/iamrakesh28/Deep-Learning-for-Weather-and-Climate-Science/blob/master/next-frame-tutorial/images/enc_dec0/input.gif)
+![Predicted0](https://github.com/iamrakesh28/Deep-Learning-for-Weather-and-Climate-Science/blob/master/next-frame-tutorial/images/enc_dec0/output.gif) <br />
+![input1](https://github.com/iamrakesh28/Deep-Learning-for-Weather-and-Climate-Science/blob/master/next-frame-tutorial/images/enc_dec1/input.gif)
+![Predicted1](https://github.com/iamrakesh28/Deep-Learning-for-Weather-and-Climate-Science/blob/master/next-frame-tutorial/images/enc_dec1/output.gif)
 <br />
 **Examples from the test set:** Left image is the input frames and right image is the actual frames vs the predicted frames. <br />
 
