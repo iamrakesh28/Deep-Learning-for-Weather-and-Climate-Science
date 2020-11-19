@@ -12,25 +12,18 @@ To run this model, set the epoch to 50. If the epoch is set higher then ensure t
 The model was trained on 950 samples and 50 validation samples for 5 epochs.
 ```
 Train on 950 samples, validate on 50 samples
-Epoch 1/5
-950/950 [==============================] - 37s 39ms/step - loss: 0.2410 - val_loss: 0.0775
-Epoch 2/5
-950/950 [==============================] - 29s 30ms/step - loss: 0.0235 - val_loss: 0.0157
-Epoch 3/5
-950/950 [==============================] - 29s 30ms/step - loss: 0.0044 - val_loss: 0.0042
-Epoch 4/5
-950/950 [==============================] - 29s 30ms/step - loss: 0.0015 - val_loss: 0.0019
-Epoch 5/5
-950/950 [==============================] - 29s 30ms/step - loss: 8.3291e-04 - val_loss: 7.3238e-04
-CPU times: user 2min 21s, sys: 38.4 s, total: 3min
-Wall time: 2min 36s
+Epoch 50/50
+900/900 [==============================] - 30s 33ms/step - loss: 0.0055 - val_loss: 0.0053
+CPU times: user 18min 27s, sys: 8min 21s, total: 26min 48s
 ```
 
 ### Result
-On a test sample, next 8 frames were predicted using first 7 frames. Since the above model is many-to-one, so for the many-to-many predictions, predicted output frames 
-are fed into the network along with the original input sequence.
- ![Predicted](https://github.com/iamrakesh28/Deep-Learning-for-Weather-and-Climate-Science/blob/master/lstm-keras/next-frame-tutorial/images/stacked/output.gif) 
- 
+On a test sample, next 10 frames were predicted using first 10 frames. Since the above model is many-to-one, so for the many-to-many predictions, predicted output frames are also feed into the network along with the original input sequence.
+
+ ![input_stack](https://github.com/iamrakesh28/Deep-Learning-for-Weather-and-Climate-Science/blob/master/lstm-keras/next-frame-tutorial/images/stack/input.gif)
+ ![Predicted_stack](https://github.com/iamrakesh28/Deep-Learning-for-Weather-and-Climate-Science/blob/master/lstm-keras/next-frame-tutorial/images/stack/output.gif) 
+ <br /> 
+ **An example from the test set:** Left image is the input frames and right image is the predicted frames vs the ground truth frames
 ## Encoder-Decoder Model
 
 One layer encoder-decoder model was used for training. The layer (both encoder and decoder) has 128 hidden units (no. of filters) with filter size of (3 x 3). The final layer in decoder is 1 x 1 2D conolutional layer with sigmoid activation to produce the frame with intensities between 0 and 1. Since it's a encoder-decoder model, the hidden states from encoder layer is used to initialize the hidden states in the decoder layer. The loss is propagated from the decoder prediction loss (encoder outputs are discarded). The training set is same as in the above model. The model was trained to minimize the binary crossentropy loss and RMSprop optimizer (learning rate = 0.001 and rho = 0.9) was used during the training. 
@@ -42,44 +35,19 @@ To run this model, set the epoch to 20 or little higher. The model converges fas
 ### Training
 The model was trained on 1000 samples for 20 epochs with batch size of 8.
 ```
-Epoch 1 Loss 0.1155
-Time taken for 1 epoch 40.9735209941864 sec
-
-Epoch 3 Loss 0.0074
-Time taken for 1 epoch 36.06649732589722 sec
-
-Epoch 5 Loss 0.0021
-Time taken for 1 epoch 35.54285788536072 sec
-
-Epoch 7 Loss 0.0010
-Time taken for 1 epoch 36.459315061569214 sec
-
-Epoch 9 Loss 0.0006
-Time taken for 1 epoch 37.46419548988342 sec
-
-Epoch 11 Loss 0.0004
-Time taken for 1 epoch 36.94618797302246 sec
-
-Epoch 13 Loss 0.0003
-Time taken for 1 epoch 35.945321559906006 sec
-
-Epoch 15 Loss 0.0002
-Time taken for 1 epoch 36.00389909744263 sec
-
-Epoch 17 Loss 0.0002
-Time taken for 1 epoch 36.477062463760376 sec
-
 Epoch 19 Loss 0.0001
 Time taken for 1 epoch 37.519431352615356 sec
 
 ```
 
 ### Result
-The model was used to predict 10 output frames sequence using 10 input seqeunce frames. Following are the two samples from the test set. Left image is the input sequence and right image is the actual next sequence vs predicted next sequence. <br />
+The model was used to predict 10 output frames sequence using 10 input seqeunce frames. 
 ![input0](https://github.com/iamrakesh28/Deep-Learning-for-Weather-and-Climate-Science/blob/master/lstm-keras/next-frame-tutorial/images/enc_dec0/input.gif)
 ![Predicted0](https://github.com/iamrakesh28/Deep-Learning-for-Weather-and-Climate-Science/blob/master/lstm-keras/next-frame-tutorial/images/enc_dec0/output.gif) <br />
 ![input1](https://github.com/iamrakesh28/Deep-Learning-for-Weather-and-Climate-Science/blob/master/lstm-keras/next-frame-tutorial/images/enc_dec1/input.gif)
 ![Predicted1](https://github.com/iamrakesh28/Deep-Learning-for-Weather-and-Climate-Science/blob/master/lstm-keras/next-frame-tutorial/images/enc_dec1/output.gif)
+<br />
+**Examples from the test set:** Left image is the input frames and right image is the actual frames vs the predicted frames. <br />
 
 ## References
 [1] https://keras.io/examples/vision/conv_lstm/ <br />
