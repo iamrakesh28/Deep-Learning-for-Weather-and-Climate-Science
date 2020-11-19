@@ -41,7 +41,7 @@ Time taken for 1 epoch 37.519431352615356 sec
 ```
 
 ### Result
-The model was used to predict 10 output frames sequence using 10 input seqeunce frames. 
+The model was used to predict 10 output frames sequence using 10 input seqeunce frames.  <br />
 ![input0](https://github.com/iamrakesh28/Deep-Learning-for-Weather-and-Climate-Science/blob/master/lstm-keras/next-frame-tutorial/images/enc_dec0/input.gif)
 ![Predicted0](https://github.com/iamrakesh28/Deep-Learning-for-Weather-and-Climate-Science/blob/master/lstm-keras/next-frame-tutorial/images/enc_dec0/output.gif) <br />
 ![input1](https://github.com/iamrakesh28/Deep-Learning-for-Weather-and-Climate-Science/blob/master/lstm-keras/next-frame-tutorial/images/enc_dec1/input.gif)
