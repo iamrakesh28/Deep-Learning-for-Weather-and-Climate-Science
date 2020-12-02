@@ -15,8 +15,24 @@ The Next Generation Weather Radar (NEXRAD) [4] system currently comprises 160 si
 (Base) data include the original three meteorological base data quantities: reflectivity, mean radial velocity, and spectrum width. Data is collected from the radar sites usually at the interval of 4, 5, 6 or 10 minutes depending upon 
 the volume coverage. Radar Data can be accessed at https://www.ncdc.noaa.gov/nexradinv/.
 
-Reflexivity is expressed in dBZ. Higher value of reflexivity tells heavy precipiation or hail at that place and lower value tells light precipiation. For examples, 65 dBZ means extremely heavy precipitation (410 mm per hour, but likely hail), 50 dBZ means heavy precipitation (51 mm per hour), 35 dBZ tells moderate precipitation of 6.4 mm per hour [2], and 
-so on. So, reflectivity component from the Level-II data can be used for weather forecasting for short duration.
+Reflexivity is expressed in dBZ. Higher value of reflexivity tells heavy precipiation or hail at that place and lower value tells light precipiation. For examples, 65 dBZ means extremely heavy precipitation (410 mm per hour, but likely hail), 50 dBZ means heavy precipitation (51 mm per hour), 35 dBZ tells moderate precipitation of 6.4 mm per hour [2], and so on. So, reflectivity component from the Level-II data can be used for weather forecasting for short duration.
+
+<p align="center">
+  <img src="https://github.com/iamrakesh28/Deep-Learning-for-Weather-and-Climate-Science/blob/master/NEXRAD/radar.png"
+       width=375>
+  <img src="https://github.com/iamrakesh28/Deep-Learning-for-Weather-and-Climate-Science/blob/master/NEXRAD/KATX/katx.png" width=400>
+  </br>
+  <em> (a) Available Radar Sites </em>
+  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+  <em> (b)  Reflexivity plot of Seattle radar site </em>
+</p>
+
+<p align="center">
+  <img src="https://github.com/iamrakesh28/Deep-Learning-for-Weather-and-Climate-Science/blob/master/NEXRAD/latest_Small.png" width=425>
+  </br>
+  <em> (c) Reflexivity maps of combined radars </em>
+</p>
 
 In this project, weather forecasting was done for two regions : Seattle, WA and South Shore,
 Hawaii. For each region, radar level-II data was collected for some duration and reflexivity plots
@@ -33,19 +49,32 @@ maps or images in each sequence was created by collecting radar data of around 3
 August-2020 to October-2020. Time gap between each frame of a sequence was around 5
 minutes. These sequences were separated into 700 training sequences, 100 validation sequences
 and 159 test sequences. The following Encoder-Decoder networks were trained for forecasting.
- 2 Layers with 64, 48 hidden units and (3 x 3) filter size in each layer. The input frames
+* 2 Layers with 64, 48 hidden units and (3 x 3) filter size in each layer. The input frames
 were reshaped into 50 x 50 x 4 vectors. The average binary crossentropy loss was 0.1491.
- 4 Layers with 96, 64, 64, 32 hidden units and (3 x 3) filter size in each layer. The input
+
+
+* 4 Layers with 96, 64, 64, 32 hidden units and (3 x 3) filter size in each layer. The input
 frames were reshaped into 25 x 25 x 16 vectors. The average binary crossentropy loss was
 0.1790.
 
+<p align="center">
+  <img src="https://github.com/iamrakesh28/Deep-Learning-for-Weather-and-Climate-Science/blob/master/NEXRAD/PHWA/64_48/radar.gif"> 
+  </br>
+  <img src="https://github.com/iamrakesh28/Deep-Learning-for-Weather-and-Climate-Science/blob/master/NEXRAD/PHWA/96_64_64_32/radar.gif">
+</p>
+
 Frames were reshaped to increase the channel size so that deeper models could be trained on
 limited resources but increasing the frame channel size too much resulted in bad performance.
+
 ### KATX-SEATTLE, WA
 Radar id at Seattle, WA is KATX. A dataset of 499 sequences with 20 radar maps in each
 sequence was created by collecting radar data of around 30 days from January-2020 to April-
 2020. Time gap between each frame of a sequence was around 10 minutes. These sequences
 were separated into 350 training sequences, 75 validation sequences and 74 test sequences.
- 4 Layers with 96, 96, 32, 32 hidden units and (3 x 3) filter size in each layer. The input
+* 4 Layers with 96, 96, 32, 32 hidden units and (3 x 3) filter size in each layer. The input
 frames were reshaped into 25 x 25 x 16 vectors. The average binary crossentropy loss was
 0.3761.
+
+<p align="center">
+  <img src="https://github.com/iamrakesh28/Deep-Learning-for-Weather-and-Climate-Science/blob/master/NEXRAD/KATX/96_96_32_32/radar.gif"> 
+</p>
