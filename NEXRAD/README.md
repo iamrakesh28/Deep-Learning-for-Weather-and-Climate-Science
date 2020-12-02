@@ -9,12 +9,23 @@ spectrum width, as well as the dual-polarization base data of differential refle
 Radar Data can be accessed at [https://www.ncdc.noaa.gov/nexradinv/]. There are different ways to access the data. For eg., Data can accessed 
 by Single Site and Day, Multiple Sites and Days, etc.
 
-## PHWA-South Shore, Hawaii
-64-48 model </br>
-![gif1](https://github.com/iamrakesh28/Deep-Learning-for-Weather-and-Climate-Science/blob/master/NEXRAD/PHWA/64_48/radar.gif) </br>
-96-64-64-32 model </br>
-![gif2](https://github.com/iamrakesh28/Deep-Learning-for-Weather-and-Climate-Science/blob/master/NEXRAD/PHWA/96_64_64_32/radar.gif) </br>
+## Download Data
+```
+python3 download_day.py
+```
 
-## KATX-Seattle, WA
-96-96-32-32 model </br>
-![gif3](https://github.com/iamrakesh28/Deep-Learning-for-Weather-and-Climate-Science/blob/master/NEXRAD/KATX/96_96_32_32/radar.gif)
+## Reflexivity Plot
+```
+python3 read_metpy
+```
+
+```
+python3 read_pyart
+```
+
+## Create Dataset
+```
+python3 dataset_day.py
+```
+
+Will be Updated...
