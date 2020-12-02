@@ -62,7 +62,7 @@ def main():
     #model.restore()
     model.train(X[:700], Y[:700], 400, X[700:800], Y[700:800])
 
-    model.test_model(X, Y)
+    test_model(model, X, Y)
 
 if __name__ == "__main__":
     main()
