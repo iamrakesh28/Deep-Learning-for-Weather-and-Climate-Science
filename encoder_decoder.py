@@ -70,7 +70,7 @@ class EncoderDecoder:
     
     # inputX - > (total, time_steps, rows, cols, channels)
     # targetY -> (total, time_steps, rows, cols, channels)
-    def train(self, inputX, targetY, epochs, X, Y):
+    def train(self, inputX, targetY, epochs, valX, valY):
         init_time = time.time()
         for epoch in range(epochs):
             start = time.time()
@@ -91,6 +91,8 @@ class EncoderDecoder:
             # saving (checkpoint) the model every 25 epochs
             if epoch % 25 == 0:
                 self.checkpoint.save(file_prefix = self.checkpoint_prefix)
+                val_loss = self.evaluate(valX, valY)
+                print('Epoch {} Evaluation Loss {:.4f}'.format(epoch + 1, val_loss))
                 # if epoch % 50 == 0:
                 #    self.test_model(X, Y)
                 # if (time.time() - init_time) / 3600.0 > 8:
