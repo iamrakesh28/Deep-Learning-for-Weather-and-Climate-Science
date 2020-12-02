@@ -1,4 +1,6 @@
 import tensorflow as tf
+import matplotlib.pyplot as plt
+import numpy as np
 from encoder_decoder import EncoderDecoder
     
 def load_dataset(path, filename):
