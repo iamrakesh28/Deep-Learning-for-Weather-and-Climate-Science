@@ -44,8 +44,9 @@ def read_nexRad(filename):
     axes.set_aspect('equal', 'datalim')
     axes.set_xlim(-150, 150)
     axes.set_ylim(-150, 150)
-    plt.axis('off')
-
+    #plt.axis('off')
+    plt.show()
+    return
     # redraw the plot
     fig.canvas.draw()
 
@@ -86,7 +87,7 @@ def read_nexRad(filename):
     '''
 
 def main():
-    filename = "PHWA20201031_000332_V06"
+    filename = "KATX20200130_001651_V06"
     read_nexRad(filename)
 
 if __name__ == "__main__":
