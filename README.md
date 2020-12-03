@@ -3,11 +3,11 @@
 Nowcasting is weather forecasting on a very short term mesosacle period upto 6 hours. The goal is to give precise and timely prediction of precipitation, storm structure, hail potential, etc. in a local region over a short time period 
 (eg., 0-6 hours). These predictions are useful for producing rainfall, storms, hails, etc alerts, providing weather guidance for airports, etc.
 
-Weather Radar’s reflexivity is used by scientists to detect precipitation, evaluate storm structure, determine hail potential, etc. Sequence of radar reflexivity over a region for some time duration has spatiotemporal nature. Weather nowcasting is a spatiotemporal sequence forecasting problem with the sequence of past reflexivity maps as input and the
-sequence of future reflexivity maps as output.
+Weather Radar’s reflectivity is used by scientists to detect precipitation, evaluate storm structure, determine hail potential, etc. Sequence of radar reflectivity over a region for some time duration has spatiotemporal nature. Weather nowcasting is a spatiotemporal sequence forecasting problem with the sequence of past reflectivity maps as input and the
+sequence of future reflectivity maps as output.
 
 The LSTM encoder-decoder framework provides a general framework for sequence-to-sequence learning problems. I have implemented Convolutional LSTM Encoder-Decoder Network [1] for weather forecasting with the sequences being maps of 
-radar reflexivity.
+radar reflectivity.
 
 ## Weather Forecasting using NEXRAD
 
@@ -15,7 +15,7 @@ The Next Generation Weather Radar (NEXRAD) [3] system currently comprises 160 si
 (Base) data include the original three meteorological base data quantities: reflectivity, mean radial velocity, and spectrum width. Data is collected from the radar sites usually at the interval of 4, 5, 6 or 10 minutes depending upon 
 the volume coverage. Radar Data can be accessed at https://www.ncdc.noaa.gov/nexradinv/.
 
-Reflexivity is expressed in dBZ. Higher value of reflexivity tells heavy precipiation or hail at that place and lower value tells light precipiation. For examples, 65 dBZ means extremely heavy precipitation (410 mm per hour, but likely hail), 50 dBZ means heavy precipitation (51 mm per hour), 35 dBZ tells moderate precipitation of 6.4 mm per hour [2], and so on. So, reflectivity component from the Level-II data can be used for weather forecasting for short duration.
+reflectivity is expressed in dBZ. Higher value of reflectivity tells heavy precipiation or hail at that place and lower value tells light precipiation. For examples, 65 dBZ means extremely heavy precipitation (410 mm per hour, but likely hail), 50 dBZ means heavy precipitation (51 mm per hour), 35 dBZ tells moderate precipitation of 6.4 mm per hour [2], and so on. So, reflectivity component from the Level-II data can be used for weather forecasting for short duration.
 
 <p align="center">
   <img src="https://github.com/iamrakesh28/Deep-Learning-for-Weather-and-Climate-Science/blob/master/NEXRAD/radar.png"
@@ -25,17 +25,17 @@ Reflexivity is expressed in dBZ. Higher value of reflexivity tells heavy precipi
   <em> (a) Available Radar Sites </em>
   &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
   &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-  <em> (b)  Reflexivity plot of Seattle radar site </em>
+  <em> (b)  reflectivity plot of Seattle radar site </em>
 </p>
 
 <p align="center">
   <img src="https://github.com/iamrakesh28/Deep-Learning-for-Weather-and-Climate-Science/blob/master/NEXRAD/latest_Small.png" width=425>
   </br>
-  <em> (c) Reflexivity maps of combined radars </em>
+  <em> (c) reflectivity maps of combined radars </em>
 </p>
 
 In this project, weather forecasting was done for two regions : Seattle, WA and South Shore,
-Hawaii. For each region, radar level-II data was collected for some duration and reflexivity plots
+Hawaii. For each region, radar level-II data was collected for some duration and reflectivity plots
 were extracted. These plots or images were resized into 100 x 100 images using nearest-neighbor
 interpolation. Further, the images were converted to gray scale and later thresholded to have
 binary intensities. These image sequences were later used for training and testing the models.
