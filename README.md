@@ -77,7 +77,12 @@ frames were reshaped into 25 x 25 x 16 vectors. The average binary crossentropy 
   <img src="https://github.com/iamrakesh28/Deep-Learning-for-Weather-and-Climate-Science/blob/master/NEXRAD/KATX/96_96_32_32/radar.gif"> 
 </p>
 
+## Predictions on other Datasets
+* [Moving-MNIST](https://github.com/iamrakesh28/Deep-Learning-for-Weather-and-Climate-Science/tree/master/Moving-MNIST)
+* [Keras-next-frame-tutorial](https://github.com/iamrakesh28/Deep-Learning-for-Weather-and-Climate-Science/tree/master/next-frame-tutorial)
+
 ## References
 [1] (https://arxiv.org/abs/1506.04214) </br>
 [2] (https://en.wikipedia.org/wiki/Weather_radar) </br>
 [3] (https://www.ncdc.noaa.gov/data-access/radar-data/nexrad) </br>
+[4] (https://www.tensorflow.org/tutorials/text/nmt_with_attention)
