@@ -38,12 +38,12 @@ class EncoderDecoder:
         #    reduction=tf.keras.losses.Reduction.SUM
         #)
         
-    def loss_function(self, real_frame, pred_frame):
+    def __loss_function(self, real_frame, pred_frame):
         return self.loss_object(real_frame, pred_frame)
         
     # input_ -> (batch_size, time_steps, rows, cols, channels)
     # target -> (batch_size, time_steps, rows, cols, channels)
-    def train_step(self, input_, target):
+    def __train_step(self, input_, target):
         batch_loss = 0
         start_pred = input_.shape[1] - 1
 
@@ -56,7 +56,7 @@ class EncoderDecoder:
             for t in range(0, target.shape[1]):
                 prediction, dec_states = self.decoder(dec_input, dec_states)
                 
-                batch_loss += self.loss_function(target[:, t, :, :, :], prediction)
+                batch_loss += self.__loss_function(target[:, t, :, :, :], prediction)
                 
                 # using teacher forcing
                 dec_input = tf.expand_dims(target[:, t, :, :, :], 1)
@@ -84,7 +84,7 @@ class EncoderDecoder:
                 
                 # print(input_.shape, target.shape)
                 
-                batch_loss = self.train_step(input_, target)
+                batch_loss = self.__train_step(input_, target)
                 total_loss += batch_loss
                 
             # saving (checkpoint) the model every 25 epochs
@@ -107,7 +107,7 @@ class EncoderDecoder:
     # input_ -> (batch_size, time_steps, rows, cols, channels)
     # target -> (batch_size, time_steps, rows, cols, channels)
     # valid  -> validation
-    def eval_step(self, input_, target, valid):
+    def __eval_step(self, input_, target, valid):
         
         batch_loss = 0
         start_pred = input_.shape[1] - 1
@@ -117,7 +117,7 @@ class EncoderDecoder:
             
         for t in range(0, target.shape[1]):
             prediction, dec_states = self.decoder(dec_input, dec_states)    
-            batch_loss += self.loss_function(target[:, t, :, :, :], prediction)
+            batch_loss += self.__loss_function(target[:, t, :, :, :], prediction)
 
             # if evaluating on validation set
             if valid:
@@ -155,7 +155,7 @@ class EncoderDecoder:
             input_ = inputX[index:index + self.batch_sz, :, :, :, :]
             target = outputY[index:index + self.batch_sz, :, :, :, :]
                 
-            batch_loss = self.eval_step(input_, target, valid)
+            batch_loss = self.__eval_step(input_, target, valid)
             total_loss += batch_loss
     
         total_batch += 1
