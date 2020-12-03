@@ -11,7 +11,7 @@ radar reflexivity.
 
 ## Weather Forecasting using NEXRAD
 
-The Next Generation Weather Radar (NEXRAD) [4] system currently comprises 160 sites throughout the United States and select overseas locations. NEXRAD detects precipitation and atmospheric movement or wind. It returns data which when processed can be displayed in a mosaic map which shows patterns of precipitation and its movement. NEXRAD Level-II
+The Next Generation Weather Radar (NEXRAD) [3] system currently comprises 160 sites throughout the United States and select overseas locations. NEXRAD detects precipitation and atmospheric movement or wind. It returns data which when processed can be displayed in a mosaic map which shows patterns of precipitation and its movement. NEXRAD Level-II
 (Base) data include the original three meteorological base data quantities: reflectivity, mean radial velocity, and spectrum width. Data is collected from the radar sites usually at the interval of 4, 5, 6 or 10 minutes depending upon 
 the volume coverage. Radar Data can be accessed at https://www.ncdc.noaa.gov/nexradinv/.
 
@@ -63,8 +63,6 @@ frames were reshaped into 25 x 25 x 16 vectors. The average binary crossentropy 
   <img src="https://github.com/iamrakesh28/Deep-Learning-for-Weather-and-Climate-Science/blob/master/NEXRAD/PHWA/96_64_64_32/radar.gif">
 </p>
 
-Frames were reshaped to increase the channel size so that deeper models could be trained on
-limited resources but increasing the frame channel size too much resulted in bad performance.
 
 ### KATX-SEATTLE, WA
 Radar id at Seattle, WA is KATX. A dataset of 499 sequences with 20 radar maps in each
@@ -78,3 +76,8 @@ frames were reshaped into 25 x 25 x 16 vectors. The average binary crossentropy 
 <p align="center">
   <img src="https://github.com/iamrakesh28/Deep-Learning-for-Weather-and-Climate-Science/blob/master/NEXRAD/KATX/96_96_32_32/radar.gif"> 
 </p>
+
+## References
+[1] (https://arxiv.org/abs/1506.04214) </br>
+[2] (https://en.wikipedia.org/wiki/Weather_radar) </br>
+[3] (https://www.ncdc.noaa.gov/data-access/radar-data/nexrad) </br>
