@@ -141,7 +141,7 @@ class EncoderDecoder:
         for t in range(output_seq):
             prediction, dec_states = self.decoder(dec_input, dec_states, False)
             dec_input = tf.expand_dims(prediction, 0)
-            predictions.append(prediction.numpy().reshape(self.image_sz[0], self.image_sz[1]))
+            predictions.append(prediction.numpy().reshape(self.image_sz))
             
         return np.array(predictions)
     
