@@ -39,10 +39,10 @@ def test_model(model, X, Y):
     test_loss = model.evaluate(X[800:], Y[800:], False)
     print('Test Loss {:.4f}'.format(test_loss))
 
-    y1 = model.predict(X[50], 10)
-    y2 = model.predict(X[150], 10)
-    y3 = model.predict(X[940], 10)
-    y4 = model.predict(X[934], 10)
+    y1 = model.predict(X[50], 10).reshape(10, 100, 100)
+    y2 = model.predict(X[150], 10).reshape(10, 100, 100)
+    y3 = model.predict(X[940], 10).reshape(10, 100, 100)
+    y4 = model.predict(X[934], 10).reshape(10, 100, 100)
 
     plot_result(X[50].numpy().reshape(10, 100, 100), Y[50].numpy().reshape(10, 100, 100), y1)
     plot_result(X[150].numpy().reshape(10, 100, 100), Y[150].numpy().reshape(10, 100, 100), y2)
