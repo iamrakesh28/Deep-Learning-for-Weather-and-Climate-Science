@@ -20,10 +20,15 @@ CPU times: user 18min 27s, sys: 8min 21s, total: 26min 48s
 ### Result
 On a test sample, next 10 frames were predicted using first 10 frames. Since the above model is many-to-one, so for the many-to-many predictions, predicted output frames are also feed into the network along with the original input sequence.
 
- ![input_stack](https://github.com/iamrakesh28/Deep-Learning-for-Weather-and-Climate-Science/blob/master/next-frame-tutorial/images/stack/input.gif)
- ![Predicted_stack](https://github.com/iamrakesh28/Deep-Learning-for-Weather-and-Climate-Science/blob/master/next-frame-tutorial/images/stack/output.gif) 
- <br /> 
- **An example from the test set:** Left image is the input frames and right image is the predicted frames vs the ground truth frames
+<p align="center">
+ <img src="https://github.com/iamrakesh28/Deep-Learning-for-Weather-and-Climate-Science/blob/master/next-frame-tutorial/images/stack/input.gif" width=200>
+ <img src="https://github.com/iamrakesh28/Deep-Learning-for-Weather-and-Climate-Science/blob/master/next-frame-tutorial/images/stack/output.gif" width=400> 
+<br /> 
+ <em> (a) Input frames </em>
+ &emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;
+ <em> (b) Prediction vs Ground truth </em>
+</p>
+
 ## Encoder-Decoder Model
 
 One layer encoder-decoder model was used for training. The layer (both encoder and decoder) has 128 hidden units (no. of filters) with filter size of (3 x 3). The final layer in decoder is 1 x 1 2D conolutional layer with sigmoid activation to produce the frame with intensities between 0 and 1. Since it's a encoder-decoder model, the hidden states from encoder layer is used to initialize the hidden states in the decoder layer. The loss is propagated from the decoder prediction loss (encoder outputs are discarded). The training set is same as in the above model. The model was trained to minimize the binary crossentropy loss and RMSprop optimizer (learning rate = 0.001 and rho = 0.9) was used during the training. 
@@ -42,12 +47,24 @@ Time taken for 1 epoch 37.519431352615356 sec
 
 ### Result
 The model was used to predict 10 output frames sequence using 10 input seqeunce frames.  <br />
-![input0](https://github.com/iamrakesh28/Deep-Learning-for-Weather-and-Climate-Science/blob/master/next-frame-tutorial/images/enc_dec0/input.gif)
-![Predicted0](https://github.com/iamrakesh28/Deep-Learning-for-Weather-and-Climate-Science/blob/master/next-frame-tutorial/images/enc_dec0/output.gif) <br />
-![input1](https://github.com/iamrakesh28/Deep-Learning-for-Weather-and-Climate-Science/blob/master/next-frame-tutorial/images/enc_dec1/input.gif)
-![Predicted1](https://github.com/iamrakesh28/Deep-Learning-for-Weather-and-Climate-Science/blob/master/next-frame-tutorial/images/enc_dec1/output.gif)
-<br />
-**Examples from the test set:** Left image is the input frames and right image is the actual frames vs the predicted frames. <br />
+
+<p align="center">
+ <img src="https://github.com/iamrakesh28/Deep-Learning-for-Weather-and-Climate-Science/blob/master/next-frame-tutorial/images/enc_dec0/input.gif" width=200>
+ <img src="https://github.com/iamrakesh28/Deep-Learning-for-Weather-and-Climate-Science/blob/master/next-frame-tutorial/images/enc_dec0/output.gif" width=400> 
+<br /> 
+ <em> (a) Input frames </em>
+ &emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;
+ <em> (b) Ground truth vs Prediction </em>
+</p>
+
+<p align="center">
+ <img src="https://github.com/iamrakesh28/Deep-Learning-for-Weather-and-Climate-Science/blob/master/next-frame-tutorial/images/enc_dec1/input.gif" width=200>
+ <img src="https://github.com/iamrakesh28/Deep-Learning-for-Weather-and-Climate-Science/blob/master/next-frame-tutorial/images/enc_dec1/output.gif" width=400> 
+<br /> 
+ <em> (a) Input frames </em>
+ &emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;
+ <em> (b) Ground truth vs Prediction </em>
+</p>
 
 ## References
 [1] https://keras.io/examples/vision/conv_lstm/ <br />

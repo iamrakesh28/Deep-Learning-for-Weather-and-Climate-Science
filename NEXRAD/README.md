@@ -25,6 +25,14 @@ Py-Art:
 ```
 python3 read_pyart.py
 ```
+<p align="center">
+  <img src="https://github.com/iamrakesh28/Deep-Learning-for-Weather-and-Climate-Science/blob/master/NEXRAD/radar_metpy.png" width=540>
+  <img src="https://github.com/iamrakesh28/Deep-Learning-for-Weather-and-Climate-Science/blob/master/NEXRAD/KATX/katx.png" width=400>
+  </br>
+  <em> (a) Using MetPy </em>
+  &emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;
+  <em> (b) Using Py-Art </em>
+</p>
 
 ## Create Dataset
 To extract the reflexivity plot from Level-II data, run
