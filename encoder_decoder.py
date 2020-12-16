@@ -20,7 +20,7 @@ class EncoderDecoder:
         self.batch_sz    = batch_sz
         self.image_sz    = image_sz
         self.encoder     = Encoder(num_layers, unit_list, filter_sz, image_sz, batch_sz)
-        self.decoder     = Decoder(num_layers, unit_list, filter_sz, image_sz.[2])
+        self.decoder     = Decoder(num_layers, unit_list, filter_sz, image_sz[2])
         self.optimizer   = tf.keras.optimizers.RMSprop(learning_rate=0.001, rho=0.9)
         self.checkpoint_dir = checkpoint_dir
         self.checkpoint_prefix = os.path.join(checkpoint_dir, "ckpt")
