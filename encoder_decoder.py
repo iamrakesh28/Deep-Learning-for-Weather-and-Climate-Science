@@ -93,7 +93,7 @@ class EncoderDecoder:
                 val_loss = self.evaluate(valX, valY)
                 print('Epoch {} Evaluation Loss {:.4f}'.format(epoch + 1, val_loss))
                 # if epoch % 50 == 0:
-                self.test_model(X, Y)
+                test_model(self, X, Y)
                 if (time.time() - init_time) / 3600.0 > 8:
                     break
 
