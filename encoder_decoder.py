@@ -93,9 +93,9 @@ class EncoderDecoder:
                 val_loss = self.evaluate(valX, valY)
                 print('Epoch {} Evaluation Loss {:.4f}'.format(epoch + 1, val_loss))
                 # if epoch % 50 == 0:
-                #    self.test_model(X, Y)
-                # if (time.time() - init_time) / 3600.0 > 8:
-                #    break
+                self.test_model(X, Y)
+                if (time.time() - init_time) / 3600.0 > 8:
+                    break
 
             total_batch += 1
             print('Epoch {} Loss {:.4f}'.format(epoch + 1, total_loss / total_batch))
