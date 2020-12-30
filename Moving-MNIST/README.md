@@ -35,8 +35,8 @@ sequences).
 * 2 Layers with 128, 128 hidden units and (5 x 5) filter size in each layer. The average
 binary crossentropy loss was 0.2791.
 
-![gif2](https://github.com/iamrakesh28/Deep-Learning-for-Weather-and-Climate-Science/blob/master/Moving-MNIST/images/128_128/7_9.gif)
-![gif2](https://github.com/iamrakesh28/Deep-Learning-for-Weather-and-Climate-Science/blob/master/Moving-MNIST/images/reshape-128-128/output.gif) </br>
+![gif2](https://github.com/iamrakesh28/Deep-Learning-for-Weather-and-Climate-Science/blob/master/Moving-MNIST/images/reshape-128-128/output.gif)
+![gif2](https://github.com/iamrakesh28/Deep-Learning-for-Weather-and-Climate-Science/blob/master/Moving-MNIST/images/128_128/1_6.gif) </br>
 
 * 3 Layers with 128, 64, 64 hidden units and (5 x 5) filter size in each layer. The average
 binary crossentropy loss was 0.2662.
