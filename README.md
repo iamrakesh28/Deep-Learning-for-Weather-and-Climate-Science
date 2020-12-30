@@ -53,9 +53,9 @@ and 159 test sequences. The following Encoder-Decoder networks were trained for 
 were reshaped into 50 x 50 x 4 vectors. The average binary crossentropy loss was 0.1491.
 
 <p align="center">
-  <img src="https://github.com/iamrakesh28/Deep-Learning-for-Weather-and-Climate-Science/blob/master/NEXRAD/PHWA/64_48/radar.gif"> 
+  <img src="https://github.com/iamrakesh28/Deep-Learning-for-Weather-and-Climate-Science/blob/master/NEXRAD/PHWA/reshape-64_48/output1.gif"> 
   </br>
-  <img src="https://github.com/iamrakesh28/Deep-Learning-for-Weather-and-Climate-Science/blob/master/NEXRAD/PHWA/reshape-64_48/output1.gif">
+  <img src="https://github.com/iamrakesh28/Deep-Learning-for-Weather-and-Climate-Science/blob/master/NEXRAD/PHWA/reshape-64_48/output2.gif">
 </p>
 
 * 4 Layers with 96, 64, 64, 32 hidden units and (3 x 3) filter size in each layer. The input
