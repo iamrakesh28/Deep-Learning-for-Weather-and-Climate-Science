@@ -50,12 +50,12 @@ August-2020 to October-2020. Time gap between each frame of a sequence was aroun
 minutes. These sequences were separated into 700 training sequences, 100 validation sequences
 and 159 test sequences. The following Encoder-Decoder networks were trained for forecasting.
 * 2 Layers with 64, 48 hidden units and (3 x 3) filter size in each layer. The input frames
-were reshaped into 50 x 50 x 4 vectors. The average binary crossentropy loss was 0.1491.
+were reshaped into 50 x 50 x 4 vectors. The average binary crossentropy loss was 0.1492.
 
 <p align="center">
   <img src="https://github.com/iamrakesh28/Deep-Learning-for-Weather-and-Climate-Science/blob/master/NEXRAD/PHWA/reshape-64_48/output1.gif"> 
-  </br>
   <img src="https://github.com/iamrakesh28/Deep-Learning-for-Weather-and-Climate-Science/blob/master/NEXRAD/PHWA/reshape-64_48/output2.gif">
+  </br>
 </p>
 
 * 4 Layers with 96, 64, 64, 32 hidden units and (3 x 3) filter size in each layer. The input
@@ -64,8 +64,8 @@ frames were reshaped into 25 x 25 x 16 vectors. The average binary crossentropy 
 
 <p align="center">
   <img src="https://github.com/iamrakesh28/Deep-Learning-for-Weather-and-Climate-Science/blob/master/NEXRAD/PHWA/64_48/radar.gif"> 
-  </br>
   <img src="https://github.com/iamrakesh28/Deep-Learning-for-Weather-and-Climate-Science/blob/master/NEXRAD/PHWA/96_64_64_32/radar.gif">
+  </br>
 </p>
 
 
