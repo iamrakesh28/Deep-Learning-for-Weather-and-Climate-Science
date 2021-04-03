@@ -18,25 +18,28 @@ validation set.
 layer: This model was trained over 1,000 sequences and tested on 200 sequences (200
 validation sequences). The average binary crossentropy loss was 0.2998.
 
-![gif1](https://github.com/iamrakesh28/Deep-Learning-for-Weather-and-Climate-Science/blob/master/Moving-MNIST/images/32_32/7_9.gif) 
-![gif1](https://github.com/iamrakesh28/Deep-Learning-for-Weather-and-Climate-Science/blob/master/Moving-MNIST/images/32_32/1_6.gif) </br> 
+<p align="center">
+<img src="https://github.com/iamrakesh28/Deep-Learning-for-Weather-and-Climate-Science/blob/master/Moving-MNIST/images/32-32/7_9.gif">
+<img src="https://github.com/iamrakesh28/Deep-Learning-for-Weather-and-Climate-Science/blob/master/Moving-MNIST/images/32-32/1_6.gif">
+</p>
 
 ## Image Reshaping
-(This will be updated as reshaping was not done properly).
-The above models were trained on NVidia K80 GPU provided by Kaggle with a weekly quota of
-around 40 hours. The weights in the ConvLSTM cells depends on batch_size x image_rows
-x image_cols x filters. Training deeper models with many hidden units required good
-memory space. So, deeper Encoder-Decoder model couldn’t be trained due to the limited re-
-source. Since, the memory allocated for ConvLSTM depends on image_size (rows x cols),
+The above models were trained on NVidia K80 GPU provided by Kaggle. The weights in the ConvLSTM cells depends on 
+batch_size x image_rows x image_cols x filters. Training deeper models with many hidden units required good
+memory space. So, deeper Encoder-Decoder model couldn’t be trained on the actual MNIST images due to the limited resource. 
+Since, the memory allocated for ConvLSTM depends on image_size (rows x cols),
 the 64 x 64 frames were reshaped into 16 x 16 x 16 frame (increasing the channel dimension).
 This allowed to train deeper Encoder-Decoder networks. Two Encoder-Decoder networks were
-trained on the sequences (8,000 training sequences, 1,000 validation sequences and 1,000 test
+trained on the sequences (7,000 training sequences, 1,500 validation sequences and 1,500 test
 sequences).
 * 2 Layers with 128, 128 hidden units and (5 x 5) filter size in each layer. The average
-binary crossentropy loss was 0.2791.
-
-![gif2](https://github.com/iamrakesh28/Deep-Learning-for-Weather-and-Climate-Science/blob/master/Moving-MNIST/images/reshape-128-128/output.gif)
-![gif2](https://github.com/iamrakesh28/Deep-Learning-for-Weather-and-Climate-Science/blob/master/Moving-MNIST/images/128_128/1_6.gif) </br>
+binary crossentropy loss was 0.1868 on the test data.
+<p align="center">
+<img src="https://github.com/iamrakesh28/Deep-Learning-for-Weather-and-Climate-Science/blob/master/Moving-MNIST/images/reshape-128-128/7_9.gif" width=310>
+<img src="https://github.com/iamrakesh28/Deep-Learning-for-Weather-and-Climate-Science/blob/master/Moving-MNIST/images/reshape-128-128/6_1.gif" width=310>
+<img src="https://github.com/iamrakesh28/Deep-Learning-for-Weather-and-Climate-Science/blob/master/Moving-MNIST/images/reshape-128-128/0_5.gif" width=310>
+</br>
+</p>
 
 * 3 Layers with 128, 64, 64 hidden units and (5 x 5) filter size in each layer. The average
 binary crossentropy loss was 0.2662.
