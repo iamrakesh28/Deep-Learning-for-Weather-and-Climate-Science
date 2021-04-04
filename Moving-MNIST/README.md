@@ -42,8 +42,12 @@ binary crossentropy loss was 0.1868 on the test data.
 </p>
 
 * 3 Layers with 128, 64, 64 hidden units and (5 x 5) filter size in each layer. The average
-binary crossentropy loss was 0.2662.
+binary crossentropy loss on the test data was 0.1675.
 
-![gif3](https://github.com/iamrakesh28/Deep-Learning-for-Weather-and-Climate-Science/blob/master/Moving-MNIST/images/128_64_64/7_9.gif)
-![gif3](https://github.com/iamrakesh28/Deep-Learning-for-Weather-and-Climate-Science/blob/master/Moving-MNIST/images/128_64_64/1_6.gif)
+<p align="center">
+<img src="https://github.com/iamrakesh28/Deep-Learning-for-Weather-and-Climate-Science/blob/master/Moving-MNIST/images/reshape-128-64-64/7_9.gif" width=310>
+<img src="https://github.com/iamrakesh28/Deep-Learning-for-Weather-and-Climate-Science/blob/master/Moving-MNIST/images/reshape-128-64-64/6_1.gif" width=310>
+<img src="https://github.com/iamrakesh28/Deep-Learning-for-Weather-and-Climate-Science/blob/master/Moving-MNIST/images/reshape-128-64-64/0_5.gif" width=310>
+</br>
+</p>
 
