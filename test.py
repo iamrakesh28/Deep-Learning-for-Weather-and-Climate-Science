@@ -1,4 +1,4 @@
-from utility import restore_patch
+from utility import restore_patch, plot_result
 
 def test_model(model, X, Y):
     #e1 = model.evaluate(X[700:800], Y[700:800], True)
