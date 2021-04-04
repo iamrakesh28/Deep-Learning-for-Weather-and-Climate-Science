@@ -13,8 +13,8 @@ class Encoder(tf.keras.Model):
         self.image_sz   = image_sz
         self.batch_sz   = batch_sz
         self.conv_lstm  = []
-        # self.batch_norm = []
-        
+        self.batch_norm = []
+    
         for layer in range(self.enc_layers):
             lstm = tf.keras.layers.ConvLSTM2D(filters=self.unit_list[layer],
                                               kernel_size=self.filter_sz[layer],
