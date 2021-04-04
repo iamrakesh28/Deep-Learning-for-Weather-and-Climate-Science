@@ -1,7 +1,7 @@
 import tensorflow as tf
-import matplotlib.pyplot as plt
 import numpy as np
 from encoder_decoder import EncoderDecoder
+from test import test_model
     
 def load_dataset(path, filename):
     train_data = np.load(path + filename)
@@ -19,35 +19,6 @@ def load_dataset(path, filename):
     X = tf.convert_to_tensor(X, dtype=tf.float32)
     Y = tf.convert_to_tensor(Y, dtype=tf.float32)
     return (X, Y)
-    
-def plot_result(input_, actual, predict):
-    
-    for i in range(input_.shape[0]):
-        plt.imshow(input_[i])
-        plt.title("Actual_" + str(i + 1))
-        plt.show()
-        
-    for i in range(actual.shape[0]):
-        plt.subplot(121), plt.imshow(actual[i]),
-        plt.title("Actual_" + str(i + 1 + input_.shape[0]))
-        plt.subplot(122), plt.imshow(predict[i]),
-        plt.title("Predicted_" + str(i + 1 + input_.shape[0]))
-        plt.show()
-        
-def test_model(model, X, Y):
-    #e1 = model.evaluate(X[700:800], Y[700:800], True)
-    test_loss = model.evaluate(X[800:], Y[800:], False)
-    print('Test Loss {:.4f}'.format(test_loss))
-
-    y1 = model.predict(X[50], 10).reshape(10, 100, 100)
-    y2 = model.predict(X[150], 10).reshape(10, 100, 100)
-    y3 = model.predict(X[940], 10).reshape(10, 100, 100)
-    y4 = model.predict(X[934], 10).reshape(10, 100, 100)
-
-    plot_result(X[50].numpy().reshape(10, 100, 100), Y[50].numpy().reshape(10, 100, 100), y1)
-    plot_result(X[150].numpy().reshape(10, 100, 100), Y[150].numpy().reshape(10, 100, 100), y2)
-    plot_result(X[940].numpy().reshape(10, 100, 100), Y[940].numpy().reshape(10, 100, 100), y3)
-    plot_result(X[934].numpy().reshape(10, 100, 100), Y[934].numpy().reshape(10, 100, 100), y4)
         
 def main():
     
@@ -59,7 +30,7 @@ def main():
         (X.shape[2], X.shape[3], X.shape[4]),
         './training_checkpoints'
     )
-    #model.restore()
+    # model.restore()
     model.train(X[:700], Y[:700], 400, X[700:800], Y[700:800])
 
     test_model(model, X, Y)
