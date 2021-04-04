@@ -12,14 +12,14 @@ class Decoder(tf.keras.Model):
         self.unit_list  = unit_list
         self.filter_sz  = filter_sz
         self.conv_lstm  = []
-        # self.batch_norm = []
+        self.batch_norm = []
         
         # volume convolution for the time step outputs
         # 1 x 1 CNN (patch size -> 4 x 4)
         self.conv_nn    = tf.keras.layers.Conv2D(filters=out_channel, 
                                                 kernel_size=(1, 1),
                                                 padding="same",
-                                                activation='sigmoid',
+                                                activation="sigmoid",
                                                 data_format="channels_last")
         
         # ConvLSTM layers and Batch Normalization
@@ -30,8 +30,8 @@ class Decoder(tf.keras.Model):
                                               return_state=True,
                                               data_format="channels_last")
             
-            #norm = tf.keras.layers.BatchNormalization()
-            #self.batch_norm.append(norm)
+            # norm = tf.keras.layers.BatchNormalization()
+            # self.batch_norm.append(norm)
             self.conv_lstm.append(lstm)
     
     # input_.shape -> (batch_size, time_steps, rows, cols, channels)
@@ -44,8 +44,8 @@ class Decoder(tf.keras.Model):
                 initial_state=states[layer]
             )
             new_states.append([hidden_state, cell_state])
-            #input_  = self.batch_norm[layer](output, training=training)
-            #input_  = tf.expand_dims(input_, 1)
+            # input_  = self.batch_norm[layer](output, training=training)
+            # input_  = tf.expand_dims(input_, 1)
             input_  = tf.expand_dims(output, 1)
         
         frames = self.conv_nn(output)

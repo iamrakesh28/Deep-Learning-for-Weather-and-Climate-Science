@@ -4,6 +4,7 @@ import time
 import os
 from encoder import Encoder
 from decoder import Decoder
+from test import test_model
 
 # Builds an encoder-decoder
 class EncoderDecoder:
@@ -22,6 +23,7 @@ class EncoderDecoder:
         self.encoder     = Encoder(num_layers, unit_list, filter_sz, image_sz, batch_sz)
         self.decoder     = Decoder(num_layers, unit_list, filter_sz, image_sz[2])
         self.optimizer   = tf.keras.optimizers.RMSprop(learning_rate=0.001, rho=0.9)
+        # self.optimizer   = tf.keras.optimizers.Adam(learning_rate=0.001)
         self.checkpoint_dir = checkpoint_dir
         self.checkpoint_prefix = os.path.join(checkpoint_dir, "ckpt")
         self.checkpoint = tf.train.Checkpoint(
@@ -39,7 +41,7 @@ class EncoderDecoder:
         #)
         
     def __loss_function(self, real_frame, pred_frame):
-        return self.loss_object(real_frame, pred_frame)
+        return tf.reduce_mean(self.loss_object(real_frame, pred_frame))
         
     # input_ -> (batch_size, time_steps, rows, cols, channels)
     # target -> (batch_size, time_steps, rows, cols, channels)
@@ -69,7 +71,7 @@ class EncoderDecoder:
     
     # inputX - > (total, time_steps, rows, cols, channels)
     # targetY -> (total, time_steps, rows, cols, channels)
-    def train(self, inputX, targetY, epochs, valX, valY):
+    def train(self, inputX, targetY, epochs, valX, valY, X, Y):
         init_time = time.time()
         for epoch in range(epochs):
             start = time.time()
@@ -88,7 +90,7 @@ class EncoderDecoder:
                 total_loss += batch_loss
                 
             # saving (checkpoint) the model every 25 epochs
-            if epoch % 25 == 0:
+            if epoch % 10 == 0:
                 self.checkpoint.save(file_prefix = self.checkpoint_prefix)
                 val_loss = self.evaluate(valX, valY)
                 print('Epoch {} Evaluation Loss {:.4f}'.format(epoch + 1, val_loss))
