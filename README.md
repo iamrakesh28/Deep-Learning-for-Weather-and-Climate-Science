@@ -55,6 +55,7 @@ were reshaped into 50 x 50 x 4 vectors. The average binary crossentropy loss was
 <p align="center">
   <img src="https://github.com/iamrakesh28/Deep-Learning-for-Weather-and-Climate-Science/blob/master/NEXRAD/PHWA/reshape-64_48/output1.gif"> 
   <img src="https://github.com/iamrakesh28/Deep-Learning-for-Weather-and-Climate-Science/blob/master/NEXRAD/PHWA/reshape-64_48/output2.gif">
+  <img src="https://github.com/iamrakesh28/Deep-Learning-for-Weather-and-Climate-Science/blob/master/NEXRAD/PHWA/reshape-64_48/output3.gif">
   </br>
 </p>
 
@@ -63,7 +64,6 @@ frames were reshaped into 25 x 25 x 16 vectors. The average binary crossentropy 
 0.1790. (Old result)
 
 <p align="center">
-  <img src="https://github.com/iamrakesh28/Deep-Learning-for-Weather-and-Climate-Science/blob/master/NEXRAD/PHWA/reshape-64_48/output3.gif">
   <img src="https://github.com/iamrakesh28/Deep-Learning-for-Weather-and-Climate-Science/blob/master/NEXRAD/PHWA/96_64_64_32/radar.gif">
   </br>
 </p>
