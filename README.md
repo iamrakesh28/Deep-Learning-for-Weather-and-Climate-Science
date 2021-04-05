@@ -76,10 +76,11 @@ sequence was created by collecting radar data of around 30 days from January-202
 were separated into 350 training sequences, 75 validation sequences and 74 test sequences.
 * 4 Layers with 96, 96, 32, 32 hidden units and (3 x 3) filter size in each layer. The input
 frames were reshaped into 25 x 25 x 16 vectors. The average binary crossentropy loss was
-0.3761.
+0.1698 on the test data.
 
 <p align="center">
-  <img src="https://github.com/iamrakesh28/Deep-Learning-for-Weather-and-Climate-Science/blob/master/NEXRAD/KATX/96_96_32_32/radar.gif"> 
+  <img src="https://github.com/iamrakesh28/Deep-Learning-for-Weather-and-Climate-Science/blob/master/NEXRAD/KATX/96-96-32-32/radar1.gif">
+  <img src="https://github.com/iamrakesh28/Deep-Learning-for-Weather-and-Climate-Science/blob/master/NEXRAD/KATX/96-96-32-32/radar2.gif">
 </p>
 
 ## Predictions on other Datasets
